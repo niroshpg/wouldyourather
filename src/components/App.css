@@ -1,0 +1,41 @@
+.ui.secondary.menu .active.item {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    background: rgba(21, 222, 198, 0.74);
+    color: rgba(0,0,0,.95);
+  }
+
+  .ui.secondary.menu .active.item:hover {
+      background: rgba(21, 222, 198, 0.74);
+      color: rgba(0,0,0,.95);
+    }
+
+
+  .ui.secondary.menu a.item:hover a.item::selection{
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      background: rgba(21, 222, 198, 0.74);
+      color: rgba(0,0,0,.95);
+    }
+
+/* a:hover {
+    color: red;
+    background-color: blue;
+    text-decoration: none;
+} */
+
+.ui.menu .item:active {
+  color: red;
+}
+
+.ui.menu .item:hover{
+  background-color: rgba(211, 243, 221, 0.87);
+}
+
+body {
+  background-color: #ECF0F1;
+}
+
+.page-login {
+  margin-top: 25px;
+}
