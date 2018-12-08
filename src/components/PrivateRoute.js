@@ -1,10 +1,10 @@
-import React,{Component} from 'react'
+import React from 'react'
 import {connect} from 'react-redux'
 import {  Route ,Redirect, withRouter} from 'react-router-dom'
 
 const PrivateRoute = ({ component : Component, ...otherProps }) => {
     const {isAuthenticated} = otherProps;
-    
+
      return (
        <Route {...otherProps}
          render={

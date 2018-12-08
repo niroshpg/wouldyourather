@@ -1,15 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Card, Icon,Grid, Image , Button} from 'semantic-ui-react'
+import { Card, Grid , Button} from 'semantic-ui-react'
 import Avatar from 'react-avatar'
 
-import { formatQuestion, formatDate } from '../utils/helpers'
+import { formatDate } from '../utils/helpers'
 
 export default function QuestionSummary(props){
 
-  const {
-    name, author,avatar,optionOne, timestamp, text, id, parent
-  } = props.question
+  const { name, author, timestamp, id } = props.question
+  
   return(
 
     <Card fluid>

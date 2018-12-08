@@ -23,7 +23,7 @@ class AuthButton  extends Component {
             }}>
             Log out
           </Button>
-    
+
 
         :
         // <Button primary>Log in</Button>
@@ -34,7 +34,7 @@ class AuthButton  extends Component {
 
 function mapStateToProps ({ authedUser }) {
   const auth =  (authedUser !== null);
-
+  
   return {
     isAuthenticated: auth,
     authedUser: authedUser,

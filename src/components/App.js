@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { BrowserRouter as Router, Route ,Redirect} from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import Dashboard from './Dashboard'
@@ -10,15 +10,14 @@ import LeaderBoard from './LeaderBoard'
 import Login from './Login'
 import Nav from './Nav'
 import PrivateRoute from './PrivateRoute'
-import './App.css';
+import './App.css'
 
 class App extends Component {
   componentDidMount() {
     this.props.dispatch(handleInitialData())
   }
-  render() {
-    const {authedUser} = this.props;
 
+  render() {
     return (
       <Router>
       <Fragment>
@@ -33,31 +32,8 @@ class App extends Component {
          </div>
         </Fragment>
         </Router>
-      // <Router>
-      //   <Fragment>
-      //     // <LoadingBar />
-      //     <div className='container'>
-      //
-      //       <Nav />
-      //       <Route path='/login' component={Login} />
-      //       <PrivateRoute path='/' exact component={Dashboard} />
-      //       <PrivateRoute path='/question/:id' component={QuestionPage} />
-      //       <PrivateRoute path='/new' component={NewQuestion} />
-      //       <PrivateRoute path='/leaderboard' component={LeaderBoard} />
-      //
-      //     </div>
-      //   </Fragment>
-      // </Router>
-
-
     )
   }
 }
 
-function mapStateToProps ({ authedUser }) {
-  return {
-    authedUser: authedUser,
-  }
-}
-
-export default connect(mapStateToProps)(App)
+export default connect()(App)

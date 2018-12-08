@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Question from './Question'
 import LeadBoardEntry from './LeadBoardEntry'
 
 class LeaderBoard extends Component {
@@ -11,7 +10,7 @@ class LeaderBoard extends Component {
         { <ul>
           {this.props.entries.map((entry) => (
             <li key={entry.id}>
-              <LeadBoardEntry entry={entry}/>
+              <LeadBoardEntry key={entry.id} entry={entry}/>
             </li>
           ))}
         </ul>}
@@ -20,19 +19,19 @@ class LeaderBoard extends Component {
   }
 }
 
-function mapStateToProps ({ Questions ,users}) {
-  const qids = Object.keys(Questions)
-    .sort((a,b) => Questions[b].timestamp - Questions[a].timestamp);
+function mapStateToProps ({ questions ,users}) {
+  const qids = Object.keys(questions)
+    .sort((a,b) => questions[b].timestamp - questions[a].timestamp);
 
   return {
     entries : Object.keys(users).map((user)=>{
       const answered = qids.filter((q)=>{
-          return Questions[q].optionOne.votes.concat(Questions[q].optionTwo.votes).find(
+          return questions[q].optionOne.votes.concat(questions[q].optionTwo.votes).find(
             e =>{return e === user } ) !==undefined
       });
 
       const created =  qids.filter((q)=>{
-          return Questions[q].author == user;
+          return questions[q].author === user;
       });
 
        const score = answered.length + created.length;

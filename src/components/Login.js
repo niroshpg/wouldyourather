@@ -1,11 +1,9 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {withRouter} from 'react-router-dom'
-
-import { Card, Icon,Grid, Image, Button, Checkbox, Form, Dropdown } from 'semantic-ui-react'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import Avatar from 'react-avatar'
+import { Card, Button, Form, Dropdown } from 'semantic-ui-react'
 
-import {setAuthedUser} from './../actions/authedUser'
+import { setAuthedUser } from './../actions/authedUser'
 
 class Login extends Component {
 
@@ -14,13 +12,11 @@ class Login extends Component {
     this.state = {
       selectedUser: 'tylermcginnis',
     };
-
     this.onUserSelected = this.onUserSelected.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit = (event)=>{
-    //event.preventDefault();
     this.props.setAuthedUser(this.state.selectedUser);
     this.props.history.push('/');
   }
@@ -42,7 +38,7 @@ class Login extends Component {
         }
     });
     return(
-      <Card  className="ui centered card" center style={{maxWidth: '800px'}} >
+      <Card  className="ui centered card"  style={{maxWidth: '800px'}} >
            <Card.Content>
              <Card.Header>Welcome to Would You Rather App!</Card.Header>
              <Card.Description  style={{textAlign: 'center'}}>
@@ -51,11 +47,11 @@ class Login extends Component {
                  <Form.Field style={{marginTop: '20px'}}>
                        <label style={{float: 'left'}}>SignIn:</label>
                        <Dropdown search selection
-                        class="ui fluid dropdown"
+                        className="ui fluid dropdown"
                         onChange={this.onUserSelected}
                         options={userNames}
                         defaultValue={selectedUser}
-                        placeHolder='select user'
+                        placeholder='select user'
                        />
                    </Form.Field>
                  <Button primary fluid type='submit'>Login</Button>

@@ -1,8 +1,7 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-
-import { NavLink ,withRouter } from 'react-router-dom'
-import { Menu,Button} from 'semantic-ui-react'
+import React from 'react'
+import { connect } from 'react-redux'
+import { NavLink, withRouter } from 'react-router-dom'
+import { Menu } from 'semantic-ui-react'
 import AuthButton from './AuthButton'
 
 const Nav = (props) => {
@@ -41,6 +40,7 @@ const Nav = (props) => {
 }
 
 function mapStateToProps ({ authedUser,users }) {
+
   return {
     isAuthenticated: (authedUser !== null),
     authedUser: users[authedUser],

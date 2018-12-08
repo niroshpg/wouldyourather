@@ -1,9 +1,6 @@
 import React from 'react'
-
-import { Card, Icon,Grid, Image , Button,Label, Progress, Segment, Header} from 'semantic-ui-react'
+import { Card, Grid, Label, Segment } from 'semantic-ui-react'
 import Avatar from 'react-avatar'
-
-import { formatQuestion, formatDate } from '../utils/helpers'
 
 export default function LeadBoardEntry(props){
 
@@ -22,7 +19,7 @@ export default function LeadBoardEntry(props){
                 <Avatar name={user.name} className="avatar"/>
               </Grid.Column>
               <Grid.Column width={10} >
-                  <h3>{user.name}</h3>
+
                     <Segment  raised >
                       Answered questions:  {answered}
                     </Segment>
@@ -32,7 +29,7 @@ export default function LeadBoardEntry(props){
                     </Segment>
 
 
-                    <Label circular color='green' floating left>
+                    <Label circular color='green' className="floating left">
                     score:  {score}
                     </Label>
               </Grid.Column>

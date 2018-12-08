@@ -1,16 +1,15 @@
 import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {
-  Card, Icon,Grid, Image , Button, Form, Checkbox ,Segment, Header
-} from 'semantic-ui-react'
-import {withRouter} from 'react-router-dom'
-
-import {handleSaveQuestionAnswer} from './../actions/questions'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import Avatar from 'react-avatar'
-import { formatQuestion, formatDate } from '../utils/helpers'
+import {
+  Card, Grid, Button, Form, Checkbox ,Segment, Header
+} from 'semantic-ui-react'
+
+import { handleSaveQuestionAnswer } from './../actions/questions'
+import { formatDate } from '../utils/helpers'
 
 class QuestionPoll extends Component {
-
   constructor(props){
     super(props);
     this.state = {
@@ -23,18 +22,14 @@ class QuestionPoll extends Component {
   handleChange = (event, { value }) => this.setState({ value })
 
   handleSubmit = (event, { value }) =>{
-    
+
     event.preventDefault();
     this.props.saveQuestionAnswer(value);
     this.props.history.push('/');
   }
 
   render(){
-
-    const {
-      name, author,avatar,optionOne,optionTwo, timestamp, text, id, parent
-    } = this.props.question
-
+    const { author, optionOne, optionTwo, timestamp, id } = this.props.question
 
     return(
       <Card fluid>
@@ -57,7 +52,13 @@ class QuestionPoll extends Component {
                     <Segment  raised padded>
                       <Header as='h3' block>
                       <Form.Field>
-                        Would you rather ... <b>{this.state.value == 'optionOne' ? optionOne.text : optionTwo.text}</b>
+                        Would you rather ...
+                        <b>
+                          {
+                            this.state.value === 'optionOne' ?
+                            optionOne.text : optionTwo.text
+                          }
+                        </b>
                       </Form.Field>
                       </Header>
                       <Form.Field>
@@ -83,11 +84,12 @@ class QuestionPoll extends Component {
                         onChange={this.handleChange}
                       />
                       </h2>
-
                       </Form.Field>
-
                     </Segment>
-                      <Button primary type='submit' >Submit</Button>
+                    <Button primary type='submit'
+                      disabled={!(this.state.value == 'optionOne' || this.state.value === 'optionTwo')} 
+                      >Submit
+                    </Button>
                 </Form>
                 </Grid.Column>
               </Grid.Row>
@@ -102,12 +104,10 @@ class QuestionPoll extends Component {
   }
 }
 
-
 function mapDispatchToProps (dispatch) {
   return {
     saveQuestionAnswer: (option) => dispatch(handleSaveQuestionAnswer(option)),
   }
 }
-
 
 export default connect(null, mapDispatchToProps)(withRouter(QuestionPoll))

@@ -2,15 +2,16 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Question from './Question'
 
-import {Tab,  Button} from 'semantic-ui-react'
+import {Tab } from 'semantic-ui-react'
 
 
 class Dashboard extends Component {
   render() {
-    const {unAnsweredIds,answeredIds} = this.props;
+    const {unAnsweredIds,answeredIds,authedUser,questionIds,dispatch,staticContext,...otherProps} = this.props;
+
     return (
       <div>
-            <Tab {...this.props}  menu={{ secondary: true }} panes={[
+            <Tab {...otherProps}  menu={{ secondary: true }} panes={[
               {
                 menuItem: 'Unaswered',
                 render: props =>
@@ -41,17 +42,18 @@ class Dashboard extends Component {
   }
 }
 
-function mapStateToProps ({ Questions,authedUser }) {
-  const qids = Object.keys(Questions)
-    .sort((a,b) => Questions[b].timestamp - Questions[a].timestamp);
+function mapStateToProps ({ questions, authedUser }) {
+
+  const qids = Object.keys(questions)
+    .sort((a,b) => questions[b].timestamp - questions[a].timestamp);
   return {
       questionIds: qids,
       answeredIds: qids.filter((q)=>{
-        return Questions[q].optionOne.votes.concat(Questions[q].optionTwo.votes).find(
+        return questions[q].optionOne.votes.concat(questions[q].optionTwo.votes).find(
           e =>{return e ===authedUser} ) !==undefined
       }),
       unAnsweredIds:  qids.filter((q)=>{
-        return Questions[q].optionOne.votes.concat(Questions[q].optionTwo.votes).find(
+        return questions[q].optionOne.votes.concat(questions[q].optionTwo.votes).find(
           e =>{return e ===authedUser} ) ===undefined
       }),
       authedUser: authedUser

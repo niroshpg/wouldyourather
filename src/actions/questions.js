@@ -5,11 +5,12 @@ export const ADD_QUESTION = 'ADD_QUESTION'
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
 export const ANSWER_QUESTION = 'ANSWER_QUESTION'
 
-
-function addQuestion (question) {
+function addQuestion (authedUser,question) {
+  debugger
   return {
     type: ADD_QUESTION,
     question,
+    authedUser
   }
 }
 
@@ -19,7 +20,6 @@ function answerQuestion ( authedUser,qid, answer) {
     authedUser, qid, answer,
   }
 }
-
 
 export function handleSaveQuestionAnswer ({qid, answer}) {
   debugger
@@ -38,25 +38,30 @@ export function handleSaveQuestionAnswer ({qid, answer}) {
   }
 }
 
-export function handleAddQuestion (text, replyingTo) {
+export function handleAddQuestion ({ id,optionOne, optionTwo, text }) {
+
   return (dispatch, getState) => {
     const { authedUser } = getState()
 
     dispatch(showLoading())
 
-    return saveQuestion({
-      text,
+   saveQuestion({
+      id:id,
+      optionOne:optionOne,
+      optionTwo:optionTwo,
+      text:text,
+      timestamp:Date.now(),
       author: authedUser,
-      replyingTo
     })
-      .then((Question) => dispatch(addQuestion(Question)))
-      .then(() => dispatch(hideLoading()))
+    .then((question)=>dispatch(addQuestion(authedUser,question)))
+    .then(()=>dispatch(hideLoading()))
+
   }
 }
 
-export function receiveQuestions (Questions) {
+export function receiveQuestions (questions) {
   return {
     type: RECEIVE_QUESTIONS,
-    Questions,
+    questions,
   }
 }

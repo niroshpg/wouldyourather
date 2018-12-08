@@ -1,15 +1,14 @@
 import React from 'react'
 
-import { Card, Icon,Grid, Image , Button,Label, Progress, Segment, Header} from 'semantic-ui-react'
+import { Card, Grid ,Label, Progress, Segment, Header} from 'semantic-ui-react'
 import Avatar from 'react-avatar'
 
-import { formatQuestion, formatDate } from '../utils/helpers'
+import { formatDate } from '../utils/helpers'
 
 export default function QuestionResults(props){
 
-  const {
-    name, author,avatar,optionOne, optionTwo, timestamp, text, id, parent
-  } = props.question
+  const { author, optionOne, optionTwo, timestamp } = props.question
+
   return(
 
     <Card fluid>
@@ -25,7 +24,7 @@ export default function QuestionResults(props){
                 <h3>Results</h3>
                       <Segment  raised padded>
                         <Header as='h3' block>
-                          <Label circular color='yellow' floating left>
+                          <Label circular color='yellow' className="floating left">
                             Your Vote
                           </Label>
                           Would you rather {optionOne.text}
