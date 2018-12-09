@@ -15,14 +15,11 @@ class QuestionPoll extends Component {
     this.state = {
       value: ''
     };
-    this.handleChange.bind(this);
-    this.handleSubmit.bind(this);
   }
 
   handleChange = (event, { value }) => this.setState({ value })
 
   handleSubmit = (event, { value }) =>{
-
     event.preventDefault();
     this.props.saveQuestionAnswer(value);
     this.props.history.push('/');
@@ -87,7 +84,7 @@ class QuestionPoll extends Component {
                       </Form.Field>
                     </Segment>
                     <Button primary type='submit'
-                      disabled={!(this.state.value === 'optionOne' || this.state.value === 'optionTwo')} 
+                      disabled={!(this.state.value === 'optionOne' || this.state.value === 'optionTwo')}
                       >Submit
                     </Button>
                 </Form>
