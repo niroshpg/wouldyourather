@@ -7,7 +7,6 @@ export function formatDate (timestamp) {
 export function formatQuestion (question, author, authedUser, parentQuestion) {
   const { id,optionOne,optionTwo, text, timestamp } = question
   const { avatarURL } = author
-debugger
   return {
     name: optionOne.text,
     id,

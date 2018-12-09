@@ -17,8 +17,12 @@ class Login extends Component {
   }
 
   handleSubmit = (event)=>{
+    /**
+      set redirect to the refere or home
+    */
+    const { from } = this.props.location.state || { from: { pathname: '/' } }
     this.props.setAuthedUser(this.state.selectedUser);
-    this.props.history.push('/');
+    this.props.history.push(from.pathname);
   }
 
    onUserSelected=(event,data)=>{

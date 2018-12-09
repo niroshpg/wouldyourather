@@ -7,10 +7,13 @@ import { formatDate } from '../utils/helpers'
 
 export default function QuestionResults(props){
 
-  const { author, optionOne, optionTwo, timestamp } = props.question
-
+  const { author, optionOne, optionTwo, timestamp } = props.question;
+  const votes1 = optionOne && optionOne.votes ? optionOne.votes.length : 0;
+  const votes2 = optionTwo && optionTwo.votes ? optionTwo.votes.length : 0;
+  const percent1 = (votes1/(votes1+votes2))*100;
+  const percent2 = (votes2/(votes1+votes2))*100;
+  
   return(
-
     <Card fluid>
          <Card.Content >
            <Card.Header>Asked by {author.name}</Card.Header>
@@ -29,22 +32,18 @@ export default function QuestionResults(props){
                           </Label>
                           Would you rather {optionOne.text}
                         </Header>
-
-                        <Progress percent={50} progress success>
-                          50%
+                        <Progress percent={percent1} progress success>
+                          {percent1}%
                         </Progress>
                       </Segment>
-
                       <Segment  raised padded>
                           <Header as='h3' block>
                             Would you rather {optionTwo.text}
                           </Header>
-
-                        <Progress percent={50} progress success>
-                          50%
+                        <Progress percent={percent2} progress success>
+                          {percent2}%
                         </Progress>
                       </Segment>
-
               </Grid.Column>
             </Grid.Row>
             </Grid>
@@ -53,7 +52,6 @@ export default function QuestionResults(props){
          <Card.Content extra>
           <span className='date'>{formatDate(timestamp)}</span>
          </Card.Content>
-       </Card>
-
+    </Card>
   )
 }

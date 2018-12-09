@@ -1,22 +1,20 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import LeadBoardEntry from './LeadBoardEntry'
 
-class LeaderBoard extends Component {
-  render() {
-    return (
-      <div>
-        <h3 className='center'>Your LeaderBoard</h3>
-        { <ul>
-          {this.props.entries.map((entry) => (
-            <li key={entry.id}>
-              <LeadBoardEntry key={entry.id} entry={entry}/>
-            </li>
-          ))}
-        </ul>}
-      </div>
-    )
-  }
+const LeaderBoard = ({entries}) => {
+  return(
+    <div>
+      <h3 className='center'>Your LeaderBoard</h3>
+      { <ul>
+        {entries.map((entry) => (
+          <li key={entry.id}>
+            <LeadBoardEntry key={entry.id} entry={entry}/>
+          </li>
+        ))}
+      </ul>}
+    </div>
+  )
 }
 
 function mapStateToProps ({ questions ,users}) {
@@ -34,10 +32,10 @@ function mapStateToProps ({ questions ,users}) {
           return questions[q].author === user;
       });
 
-       const score = answered.length + created.length;
-
+      const score = answered.length + created.length;
 
       return ({
+        id: user,
         user: users[user],
         answered : answered.length,
         created: created.length,

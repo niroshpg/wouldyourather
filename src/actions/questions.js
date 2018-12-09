@@ -6,7 +6,6 @@ export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
 export const ANSWER_QUESTION = 'ANSWER_QUESTION'
 
 function addQuestion (authedUser,question) {
-  debugger
   return {
     type: ADD_QUESTION,
     question,
@@ -22,7 +21,6 @@ function answerQuestion ( authedUser,qid, answer) {
 }
 
 export function handleSaveQuestionAnswer ({qid, answer}) {
-  debugger
   return (dispatch, getState) => {
     const { authedUser } = getState()
 

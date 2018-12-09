@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
@@ -7,17 +7,15 @@ import QuestionPoll from './QuestionPoll'
 import QuestionResults from './QuestionResults'
 import { formatQuestion } from '../utils/helpers'
 
-class Question extends Component {
+const Question = (props) => {
+  const { question,summary,answered} = props
 
-  render() {
-    const { question,summary,answered} = this.props
+  if (question === null) {
+    return <p>This Question doesn't existed</p>
+  }
 
-    if (question === null) {
-      return <p>This Question doesn't existed</p>
-    }
-
-    return (
-      <div className='Question'>
+  return (
+    <div className='Question'>
       {
         summary ?
         <QuestionSummary question={question}/>
@@ -28,9 +26,8 @@ class Question extends Component {
           <QuestionPoll question={question}/>
         )
       }
-      </div>
-    )
-  }
+    </div>
+  )
 }
 
 function mapStateToProps ({authedUser, users, questions}, { id }) {

@@ -36,7 +36,6 @@ class NewQuestion extends Component {
 
     const { optionOne, optionTwo } = this.state
     const { dispatch } = this.props
-    debugger
     dispatch(
       handleAddQuestion({
         optionOne:optionOne,
@@ -64,15 +63,17 @@ class NewQuestion extends Component {
 
       <Card fluid>
          <Card.Content >
-           <Card.Header>Create New Question</Card.Header>
+            <Card.Header>
+              Create New Question
+            </Card.Header>
            <Card.Description >
-                <h3 className='center'>Complte the question</h3>
+                <h5 className='left'>Complte the question</h5>
 
                   <Segment padded>
                     <Form onSubmit={e => this.handleSubmit(e)}>
                     <h3>Would you rather ...</h3>
 
-                      <Input fluid
+                      <Input fluid transparent
                         placeholder="type you firt option here"
                         value={optionOne}
                         onChange={this.handleOptionOneChange}
@@ -82,19 +83,20 @@ class NewQuestion extends Component {
 
                       <Divider horizontal>Or</Divider>
 
-                      <Input fluid
+                      <Input fluid transparent
                         placeholder="type you second option here"
                         value={optionTwo}
                         onChange={this.handleOptionTwoChange}
                         className='textarea'
                         maxLength={280}
                       />
-
-                      <Button
-                        primary type='submit'
-                        disabled={optionOne === '' || optionTwo === ''} >
-                        Submit
-                      </Button>
+                        <Segment basic >
+                            <Button
+                              primary type='submit'
+                              disabled={optionOne === '' || optionTwo === ''} >
+                              Submit
+                            </Button>
+                        </Segment>
                         </Form>
                   </Segment>
 

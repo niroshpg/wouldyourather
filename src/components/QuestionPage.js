@@ -1,23 +1,30 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 
 import Question from './Question'
+import RequestNotFound from './RequestNotFound'
 
-class QuestionPage extends Component {
-  render() {
-    const { question, authedUser } = this.props;
+const QuestionPage = ({ question, authedUser }) =>  {
 
-    const answered = question.optionOne.votes
-      .concat(question.optionTwo.votes)
-      .find(e =>{return e ===authedUser} ) !==undefined;
+  const answered = question ? question.optionOne.votes
+    .concat(question.optionTwo.votes)
+    .find(e =>{return e ===authedUser} ) !==undefined
+    :
+    false;
 
-    return (
+    return(
       <div>
-        <Question id={question.id} summary={false} answered={answered}/>
+        {
+          (question)?
+          <Question id={question.id} summary={false} answered={answered}/>
+          :
+          <RequestNotFound/>
+        }
+
       </div>
     )
-  }
 }
+
 
 function mapStateToProps ({ authedUser, questions, users }, props) {
   const { id } = props.match.params

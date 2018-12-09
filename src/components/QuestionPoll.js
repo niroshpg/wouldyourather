@@ -87,7 +87,7 @@ class QuestionPoll extends Component {
                       </Form.Field>
                     </Segment>
                     <Button primary type='submit'
-                      disabled={!(this.state.value == 'optionOne' || this.state.value === 'optionTwo')} 
+                      disabled={!(this.state.value === 'optionOne' || this.state.value === 'optionTwo')} 
                       >Submit
                     </Button>
                 </Form>

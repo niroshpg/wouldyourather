@@ -1,15 +1,14 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
+import { Tab } from 'semantic-ui-react'
+
 import Question from './Question'
 
-import {Tab } from 'semantic-ui-react'
+const Dashboard = (props) =>{
+  
+  const {unAnsweredIds,answeredIds,authedUser,questionIds,dispatch,staticContext,...otherProps} = props;
 
-
-class Dashboard extends Component {
-  render() {
-    const {unAnsweredIds,answeredIds,authedUser,questionIds,dispatch,staticContext,...otherProps} = this.props;
-
-    return (
+  return (
       <div>
             <Tab {...otherProps}  menu={{ secondary: true }} panes={[
               {
@@ -38,12 +37,10 @@ class Dashboard extends Component {
             }
             ]}/>
       </div>
-    )
-  }
+  )
 }
 
 function mapStateToProps ({ questions, authedUser }) {
-
   const qids = Object.keys(questions)
     .sort((a,b) => questions[b].timestamp - questions[a].timestamp);
   return {
